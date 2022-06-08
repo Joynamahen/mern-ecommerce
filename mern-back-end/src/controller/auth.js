@@ -43,7 +43,7 @@ exports.signin = (req, res) =>{
        if(error) return res.status(400).json({error});
        if(user){
           if(user.authenticate(req.body.password)){
-             
+
           }
 
        }else{
