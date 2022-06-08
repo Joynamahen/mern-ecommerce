@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //routes
-const userRoutes=require('./routes/user');
+const authRoutes=require('./routes/auth');
 const { application } = require('express');
 
 env.config();
@@ -19,7 +19,7 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex:true
+     
       
     },err => {
       if(err) throw err;
@@ -31,19 +31,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-app.use('/api',userRoutes);
+app.use('/api',authRoutes);
 
-app.get('/', (req,res,next)=>{
-  res.status(200).json({
-      message: 'Hello from Server'
-  });
-});
+//app.get('/', (req,res,next)=>{
+//res.status(200).json({
+//  message: 'Hello from Server'
+//});
+//});
 
-app.post('/data', (req,res,next)=>{
-  res.status(200).json({
-      message: req.body
-  });
-});
+//app.post('/data', (req,res,next)=>{
+//res.status(200).json({
+//  message: req.body
+//});
+//});
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port ${process.env.PORT}`);
