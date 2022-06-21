@@ -1,26 +1,10 @@
 const express =require ('express');
 const { signup,signin, requireSignin } = require('../controller/auth');
-const {} =require ('express-validator');
+const { validateRequest } = require('../validators/auth');
 const router = express.Router();
 
 
-router.post('/signup',[
-    check('firstName')
-    .isEmpty()
-    .withMessage('firstName is required'),
-
-    check('lastName')
-    .isEmpty()
-    .withMessage('lastName is required'),
-
-    check('email')
-    .isEmail()
-    .withMessage('Valid Email is required'),
-
-    check('password')
-    .isLength({ min : 6})
-    .withMessage('Password must be atleast 6 character long')
-] ,signup);
+router.post('/signup', validateRequest ,signup);
 
 router.post('/signin', signin);
 
